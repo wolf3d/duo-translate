@@ -2,7 +2,7 @@
     "name": "NRK TV Duo translate",
     "version": "1.0",
     "description": "Build an Extension!",
-    "permissions": ["activeTab","declarativeContent","storage","webNavigation","tabs"],
+    "permissions": ["activeTab","declarativeContent","tabs"],
     "background": {
       "scripts": ["background.js"],
       "persistent": false
