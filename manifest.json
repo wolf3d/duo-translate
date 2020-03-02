@@ -20,7 +20,8 @@
         {
           "matches": ["https://tv.nrk.no/*"],
           "run_at": "document_idle",
-          "js": ["contentScript.js"]
+          "js": ["contentScript.js"],
+          "css": ["translationElement.css"]
         }
       ],
     "icons": {
