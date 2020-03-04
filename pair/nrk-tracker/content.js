@@ -1,4 +1,4 @@
-console.log("started logging in content.js script");
+console.log("started logging in tracker content.js script");
 console.log(items);
 
 
@@ -22,7 +22,7 @@ const config = {
 
 var cmp = '';
 // The ID of the extension we want to talk to.                    
-var translatorExtensionId = "fidpagikaeglkkgdjgipobnignmfccgm";
+var translatorExtensionId = "emkkjkehlflkijdpcjckcbpckhidbehp";
         
 //// Start a long-running conversation:
 var port = chrome.runtime.connect(translatorExtensionId);

@@ -4,8 +4,13 @@ changeColor.onclick = function(element) {
       active: true,
       currentWindow: true
   }, function(tabs) {
+      chrome.tabs.executeScript(tabs[0].id, {
+          code: "var items = document.getElementsByClassName('result-shield-container');"
+      }, function() {
           chrome.tabs.executeScript(tabs[0].id, {
               file: 'content.js'
+          });
       });
+
   });
 };

@@ -6,14 +6,7 @@
     "background": {
       "scripts": ["background.js"],
       "persistent": false
-    },    
-    "content_scripts": [
-        {
-          "matches": ["https://tv.nrk.no/*"],
-          "run_at": "document_idle",          
-          "js": ["content.js"]
-        }
-      ],
+    },
     "page_action": {
       "default_popup": "popup.html",
       "default_icon": {

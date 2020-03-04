@@ -1,9 +1,14 @@
 console.log("started logging in content.js script");
 console.log(items);
 
-
+var targetNode;
 // Select the node that will be observed for mutations
-var targetNode = items[1]; //document.getElementById('some-id');
+if(items.length == 1) {
+    targetNode = items[0];
+}
+if(items.length == 2) {
+    targetNode = items[1];
+}
 
 // Options for the observer (which mutations to observe)
 const config = {

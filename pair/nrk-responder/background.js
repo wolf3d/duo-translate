@@ -18,20 +18,25 @@ chrome.runtime.onConnectExternal.addListener(function(port) {
         // See other examples for sample onMessage handlers.
         console.log("msg.no " + msg.no);
 
-
         chrome.tabs.query({title: "Google Translate"}, function(tabs) {
             chrome.tabs.sendMessage(tabs[0].id, {beskjed: msg.no}, function(response) {
-
-                console.log(tabs[0].id);
-                console.log(tabs[0].title);
-
+              //console.log("response:"+response.farewell);
             });
           });
 
-        // chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-        //     chrome.tabs.sendMessage(tabs[0].id,  {beskjed: msg.no}, function(response) {              
+        // chrome.runtime.onConnect.addListener(function(port) {
+        //     console.assert(port.name == "knockknock");
+        //     port.onMessage.addListener(function(msg) {
+        //     //   if (msg.joke == "Knock knock")
+        //     //     port.postMessage({question: "Who's there?"});
+        //     //   else if (msg.answer == "Madame")
+        //     //     port.postMessage({question: "Madame who?"});
+        //     //   else if (msg.answer == "Madame... Bovary")
+        //     //     port.postMessage({question: "I don't get it."});
         //     });
+        //     port.postMessage({beskjed: msg.no});
         //   });
+
 
     });
 });
