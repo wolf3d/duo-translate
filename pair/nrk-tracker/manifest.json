@@ -1,0 +1,33 @@
+{
+    "name": "NRK TV Tracker",
+    "version": "1.0",
+    "description": "sends norwegian texts for translation, receives translated texts and sets text under original closed captions",
+    "permissions": ["activeTab","declarativeContent","tabs"],
+    "background": {
+      "scripts": ["background.js"],
+      "persistent": false
+    },
+    "page_action": {
+      "default_popup": "popup.html",
+      "default_icon": {
+        "16": "images/baseline_tv_black_18dp.png",
+        "32": "images/baseline_tv_black_24dp.png",
+        "48": "images/baseline_tv_black_36dp.png",
+        "128": "images/baseline_tv_black_48dp.png"
+      }
+    },
+    "content_scripts": [
+        {
+          "matches": ["https://tv.nrk.no/*"],
+          "run_at": "document_idle",          
+          "css": ["translationElement.css"]
+        }
+      ],
+    "icons": {
+      "16": "images/baseline_tv_black_18dp.png",
+      "32": "images/baseline_tv_black_24dp.png",
+      "48": "images/baseline_tv_black_36dp.png",
+      "128": "images/baseline_tv_black_48dp.png"
+      },
+    "manifest_version": 2
+  }
