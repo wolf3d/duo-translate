@@ -1,5 +1,6 @@
-console.log("started logging in content.js script");
+console.log("started logging in tracker content.js script");
 console.log(items);
+
 
 var targetNode;
 // Select the node that will be observed for mutations
@@ -10,6 +11,7 @@ if(items.length == 2) {
     targetNode = items[1];
 }
 
+
 // Options for the observer (which mutations to observe)
 const config = {
     characterData: false,
@@ -17,6 +19,13 @@ const config = {
     childList: true,
     subtree: false
 };
+
+var cmp = '';
+// The ID of the extension we want to talk to.                    
+var translatorExtensionId = "fidpagikaeglkkgdjgipobnignmfccgm";
+        
+//// Start a long-running conversation:
+var port = chrome.runtime.connect(translatorExtensionId);
 
 // Callback function to execute when mutations are observed
 const callback = function(mutationsList, observer) {
@@ -48,31 +57,22 @@ const callback = function(mutationsList, observer) {
                             first = false;
                         } else {
                             full_text_subtitle += ' ' + object[1].innerText;
+
+                            if (cmp != full_text_subtitle) {
+                                console.log(full_text_subtitle);
+                                port.postMessage({
+                                    no: full_text_subtitle
+                                });    
+                            }
+                            cmp = full_text_subtitle;
+                            
+                            //tElement.textContent = full_text_subtitle;                            
                         }
                     });
-                    console.log(full_text_subtitle);
-                    //tElement.textContent = full_text_subtitle;
 
-                    var port = chrome.runtime.connect({
-                        name: "knockknock"
-                    });
-                    port.postMessage({
-                        no: full_text_subtitle
-                    });
-                    port.onMessage.addListener(function(msg) {
-                        console.log("msg.en: " + msg.en);
-                        tElement.textContent = msg.en;
-                    });
                 }
             }
         }
-
-        if (mutation.type === 'characterData') {
-            console.log('characterData has been changed');
-        }
-        // else if (mutation.type === 'attributes') {
-        //     console.log('The ' + mutation.attributeName + ' attribute was modified.');
-        // }
     }
 };
 
