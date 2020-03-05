@@ -22,7 +22,7 @@ const config = {
 
 var cmp = '';
 // The ID of the extension we want to talk to.                    
-var translatorExtensionId = "emkkjkehlflkijdpcjckcbpckhidbehp";
+var translatorExtensionId = "fidpagikaeglkkgdjgipobnignmfccgm";
         
 //// Start a long-running conversation:
 var port = chrome.runtime.connect(translatorExtensionId);

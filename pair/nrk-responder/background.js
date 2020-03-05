@@ -13,30 +13,24 @@ chrome.runtime.onInstalled.addListener(function() {
 });
 
 // For long-lived connections:
-chrome.runtime.onConnectExternal.addListener(function(port) {
-    port.onMessage.addListener(function(msg) {
-        // See other examples for sample onMessage handlers.
-        console.log("msg.no " + msg.no);
+var from_port;
 
-        chrome.tabs.query({title: "Google Translate"}, function(tabs) {
-            chrome.tabs.sendMessage(tabs[0].id, {beskjed: msg.no}, function(response) {
-              //console.log("response:"+response.farewell);
+chrome.runtime.onConnectExternal.addListener((port) => {
+    console.log(port);
+    console.log(`connection attempt from ${port.sender.id}`);
+    if (port.sender.origin == "https://tv.nrk.no") {
+        from_port = port;
+        from_port.onMessage.addListener((message) => {
+            console.log(`From ${port.sender.origin}: ${message.no}`);
+
+            chrome.tabs.query({
+                title: "Google Translate"
+            }, function(tabs) {
+                chrome.tabs.sendMessage(tabs[0].id, {
+                    beskjed: message.no
+                }, function(response) {});
             });
-          });
-
-        // chrome.runtime.onConnect.addListener(function(port) {
-        //     console.assert(port.name == "knockknock");
-        //     port.onMessage.addListener(function(msg) {
-        //     //   if (msg.joke == "Knock knock")
-        //     //     port.postMessage({question: "Who's there?"});
-        //     //   else if (msg.answer == "Madame")
-        //     //     port.postMessage({question: "Madame who?"});
-        //     //   else if (msg.answer == "Madame... Bovary")
-        //     //     port.postMessage({question: "I don't get it."});
-        //     });
-        //     port.postMessage({beskjed: msg.no});
-        //   });
-
-
-    });
+            
+        });
+    }
 });

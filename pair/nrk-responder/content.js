@@ -1,13 +1,16 @@
 console.log("started logging in responder content.js script");
 console.log(items);
 
-    chrome.runtime.onMessage.addListener(function(beskjed,sender,sendResponse){        
-          console.log("beskjed:" + JSON.stringify(beskjed.beskjed));
-          document.getElementById('source').value = beskjed.beskjed;
-      });
+chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {    
+    console.log(`message: ${msg.beskjed}`);
+    sendResponse({
+        response: "received"
+    });
+    document.getElementById('source').value = msg.beskjed;
+});
       
 
-      // Select the node that will be observed for mutations
+// Select the node that will be observed for mutations
 const targetNode = items[0];
 
 // Options for the observer (which mutations to observe)
@@ -29,5 +32,5 @@ const observer = new MutationObserver(callback);
 // Start observing the target node for configured mutations
 observer.observe(targetNode, config);
 
-// Later, you can stop observing
-//observer.disconnect();
+// // Later, you can stop observing
+// //observer.disconnect();
