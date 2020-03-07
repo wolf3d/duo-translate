@@ -15,7 +15,7 @@ const targetNode = items[0];
 
 // The ID of the extension we want to talk to.                 
 // tracker extension id   
-var translatorExtensionId = "bkbhmoenlfibhnfakjbcbcaghegapgkd";
+var translatorExtensionId = "iafeipooamebpgalcmjbaehdimgfiepg";
 
 //// Start a long-running conversation:
 var port = chrome.runtime.connect(translatorExtensionId);
