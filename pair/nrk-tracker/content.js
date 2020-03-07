@@ -12,6 +12,17 @@ if(items.length == 2) {
 }
 
 
+chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {    
+    console.log(`message: ${msg.beskjed}`);
+    sendResponse({
+        response: "received"
+    });
+    console.log(msg.beskjed);
+    console.log(document.getElementById('translation-element'));
+    document.getElementById('translation-element').innerHTML = msg.beskjed;
+});
+
+
 // Options for the observer (which mutations to observe)
 const config = {
     characterData: false,
@@ -22,7 +33,7 @@ const config = {
 
 var cmp = '';
 // The ID of the extension we want to talk to.                    
-var translatorExtensionId = "fidpagikaeglkkgdjgipobnignmfccgm";
+var translatorExtensionId = "kdlkelkplehlgnjmadcfpdacgdpgeapa";
         
 //// Start a long-running conversation:
 var port = chrome.runtime.connect(translatorExtensionId);

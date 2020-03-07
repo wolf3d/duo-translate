@@ -18,7 +18,7 @@ var from_port;
 chrome.runtime.onConnectExternal.addListener((port) => {
     console.log(port);
     console.log(`connection attempt from ${port.sender.id}`);
-    if (port.sender.origin == "https://tv.nrk.no") {
+    //if (port.sender.origin == "https://tv.nrk.no") {
         from_port = port;
         from_port.onMessage.addListener((message) => {
             console.log(`From ${port.sender.origin}: ${message.no}`);
@@ -32,5 +32,5 @@ chrome.runtime.onConnectExternal.addListener((port) => {
             });
             
         });
-    }
+    //}
 });
