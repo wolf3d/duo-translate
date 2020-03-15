@@ -1,7 +1,6 @@
 console.log("started logging in tracker content.js script");
 console.log(items);
 
-
 var targetNode;
 // Select the node that will be observed for mutations
 if(items.length == 1) {
@@ -10,7 +9,6 @@ if(items.length == 1) {
 if(items.length == 2) {
     targetNode = items[1];
 }
-
 
 chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {    
     console.log(`message: ${msg.beskjed}`);
@@ -38,54 +36,53 @@ var translatorExtensionId = "gpfpplgblhkoljklpplfhpjkhemonpgc";
 //// Start a long-running conversation:
 var port = chrome.runtime.connect(translatorExtensionId);
 
+var full_text_subtitle = '';
+
 // Callback function to execute when mutations are observed
-const callback = function(mutationsList, observer) {
-    // Use traditional 'for loops' for IE 11
-    for (let mutation of mutationsList) {
-        if (mutation.type === 'childList') {
-            console.log('A child node has been added or removed.');
+function callback(mutationList, observer) {
+    mutationList.forEach((mutation) => {
+      switch(mutation.type) {
+        case 'childList':
+          /* One or more children have been added to and/or removed
+             from the tree; see mutation.addedNodes and
+             mutation.removedNodes */
 
-            //console.log(targetNode.parentNode.children);
-            if (!document.getElementById('translation-element')) {
-                let translationElement = document.createElement('div');
-                translationElement.setAttribute("id", "translation-element");
-                targetNode.parentNode.append(translationElement);
+             console.log('A child node has been added or removed.');
 
+             if (!document.getElementById('translation-element')) {
+                 let translationElement = document.createElement('div');
+                 translationElement.setAttribute("id", "translation-element");
+                 targetNode.parentNode.append(translationElement);
 
+                 if (targetNode.innerText != '') {                    
+                    if (full_text_subtitle.toUpperCase() !== targetNode.innerText.toUpperCase()) {
+                        console.log(targetNode.innerText);
 
-            } else {
-                let tElement = document.getElementById('translation-element');
-                let captionItems = document.getElementsByClassName('ludo-captions__line');
-                console.log(captionItems.length);
-                var full_text_subtitle = '';
+                        port.postMessage({
+                            no: targetNode.innerText
+                        });
 
-                if (captionItems.length > 0) {
-                    var first = true;
-                    Object.entries(captionItems).map((object) => {
-                        //console.log(object[1].innerText);
-                        if (first) {
-                            full_text_subtitle += object[1].innerText;
-                            first = false;
-                        } else {
-                            full_text_subtitle += ' ' + object[1].innerText;
+                        full_text_subtitle = targetNode.innerText;
+                    }
+                 } 
+ 
+             } else {
+                 if (targetNode.innerText != '') {                    
+                    if (full_text_subtitle.toUpperCase() !== targetNode.innerText.toUpperCase()) {
+                        console.log(targetNode.innerText);
 
-                            if (cmp != full_text_subtitle) {
-                                console.log(full_text_subtitle);
-                                port.postMessage({
-                                    no: full_text_subtitle
-                                });    
-                            }
-                            cmp = full_text_subtitle;
-                            
-                            //tElement.textContent = full_text_subtitle;                            
-                        }
-                    });
+                        port.postMessage({
+                            no: targetNode.innerText
+                        });
 
-                }
-            }
-        }
-    }
-};
+                        full_text_subtitle = targetNode.innerText;
+                    }
+                 }
+             }
+             break;
+      }
+    });
+  }
 
 // Create an observer instance linked to the callback function
 const observer = new MutationObserver(callback);
