@@ -1,8 +1,8 @@
 {
     "name": "NRK TV Responder",
     "version": "1.0",
-    "description": "receives norwegian texts for translation, pushed trough google translate and sends english texts back to tracker",
-    "permissions": ["activeTab","declarativeContent","tabs"],
+    "description": "receives norwegian texts for translation, pushes trough google translate and sends english texts back to tracker",
+    "permissions": ["activeTab","declarativeContent","tabs", "storage"],
     "background": {
       "scripts": ["background.js"],
       "persistent": false
@@ -15,6 +15,10 @@
         "48": "images/baseline_translate_black_36dp.png",
         "128": "images/baseline_translate_black_48dp.png"
       }
+    },
+    "options_ui": {
+      "page": "options.html",
+      "open_in_tab": false
     },
     "icons": {
       "16": "images/baseline_translate_black_18dp.png",

@@ -2,7 +2,7 @@
     "name": "NRK TV Tracker",
     "version": "1.0",
     "description": "sends norwegian texts for translation, receives translated texts and sets text under original closed captions",
-    "permissions": ["activeTab","declarativeContent","tabs"],
+    "permissions": ["activeTab","declarativeContent","tabs", "storage"],
     "background": {
       "scripts": ["background.js"],
       "persistent": false
@@ -15,6 +15,10 @@
         "48": "images/baseline_tv_black_36dp.png",
         "128": "images/baseline_tv_black_48dp.png"
       }
+    },
+    "options_ui": {
+      "page": "options.html",
+      "open_in_tab": false
     },
     "content_scripts": [
         {
