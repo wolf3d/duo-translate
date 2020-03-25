@@ -1,5 +1,6 @@
 console.log("started logging in responder content.js script");
 console.log(items);
+console.log(trackerIdv);
 
 chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {    
     console.log(`message: ${msg.beskjed}`);
@@ -15,7 +16,7 @@ const targetNode = items[0];
 
 // The ID of the extension we want to talk to.                 
 // tracker extension id   
-var translatorExtensionId = "iafeipooamebpgalcmjbaehdimgfiepg";
+var translatorExtensionId = trackerIdv;//"iafeipooamebpgalcmjbaehdimgfiepg";
 
 //// Start a long-running conversation:
 var port = chrome.runtime.connect(translatorExtensionId);

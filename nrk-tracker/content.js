@@ -1,5 +1,7 @@
 console.log("started logging in tracker content.js script");
 console.log(items);
+console.log(responderIdv);
+
 
 var targetNode;
 // Select the node that will be observed for mutations
@@ -31,7 +33,7 @@ const config = {
 
 var cmp = '';
 // The ID of the extension we want to talk to.                    
-var translatorExtensionId = "gpfpplgblhkoljklpplfhpjkhemonpgc";
+var translatorExtensionId = responderIdv;//"gpfpplgblhkoljklpplfhpjkhemonpgc";
         
 //// Start a long-running conversation:
 var port = chrome.runtime.connect(translatorExtensionId);
