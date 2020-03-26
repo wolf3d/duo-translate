@@ -1,7 +1,7 @@
 {
     "name": "NRK TV Tracker",
-    "version": "1.0",
-    "description": "sends norwegian texts for translation, receives translated texts and sets text under original closed captions",
+    "version": "0.0.0.1",
+    "description": "sends norwegian closed captions for to responder, receives translated texts and sets text under original closed captions",
     "permissions": ["activeTab","declarativeContent","tabs", "storage"],
     "background": {
       "scripts": ["background.js"],
