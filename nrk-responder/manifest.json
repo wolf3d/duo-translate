@@ -1,7 +1,7 @@
 {
     "name": "NRK TV Responder",
     "version": "0.0.0.1",
-    "description": "receives norwegian closed captions for translation, pushes trough google translate and sends english texts back to tracker",
+    "description": "One of two extensions in pair of extensions 'NRK TV Tracker' and 'NRK TV Responder', it works only in pair with 'NRK TV Tracker'. These extensions are intended for translation of Norwegian closed captions on NRK TV ( Norsk rikskringkasting AS i.e. Norwegian Broadcasting Corporation ) and are not able to function on their own. 'NRK TV Responder' receives Norwegian closed captions for translation from 'NRK TV Tracker', pushes text trough google translate and sends English texts back to tracker",
     "permissions": ["activeTab","declarativeContent","tabs", "storage"],
     "background": {
       "scripts": ["background.js"],
