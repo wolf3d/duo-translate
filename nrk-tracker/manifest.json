@@ -10,10 +10,7 @@
     "page_action": {
       "default_popup": "popup.html",
       "default_icon": {
-        "16": "images/baseline_tv_black_18dp.png",
-        "32": "images/baseline_tv_black_24dp.png",
-        "48": "images/baseline_tv_black_36dp.png",
-        "128": "images/baseline_tv_black_48dp.png"
+        "128": "images/tv-black-128.png"
       }
     },
     "options_ui": {
@@ -28,10 +25,7 @@
         }
       ],
     "icons": {
-      "16": "images/baseline_tv_black_18dp.png",
-      "32": "images/baseline_tv_black_24dp.png",
-      "48": "images/baseline_tv_black_36dp.png",
-      "128": "images/baseline_tv_black_48dp.png"
+      "128": "images/tv-black-128.png"
       },
     "manifest_version": 2
   }

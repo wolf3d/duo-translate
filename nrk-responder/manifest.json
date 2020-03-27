@@ -9,11 +9,8 @@
     },
     "page_action": {
       "default_popup": "popup.html",
-      "default_icon": {
-        "16": "images/baseline_translate_black_18dp.png",
-        "32": "images/baseline_translate_black_24dp.png",
-        "48": "images/baseline_translate_black_36dp.png",
-        "128": "images/baseline_translate_black_48dp.png"
+      "default_icon": {        
+        "128": "images/translate-black-128.png"
       }
     },
     "options_ui": {
@@ -21,10 +18,7 @@
       "open_in_tab": false
     },
     "icons": {
-      "16": "images/baseline_translate_black_18dp.png",
-      "32": "images/baseline_translate_black_24dp.png",
-      "48": "images/baseline_translate_black_36dp.png",
-      "128": "images/baseline_translate_black_48dp.png"
+      "128": "images/translate-black-128.png"
       },
     "manifest_version": 2
   }
